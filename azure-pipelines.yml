@@ -30,8 +30,7 @@ stages:
     - task: Docker@2
       displayName: Push image
       inputs:
-        containerRegistry: |
-          $(dockerHub)
+        containerRegistry: 'dockerHub'
         repository: 'lexslimx/alexkesite'
         command: push
         tags: |
