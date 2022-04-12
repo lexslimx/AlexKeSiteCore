@@ -52,11 +52,10 @@ stages:
         azureSubscriptionEndpoint: 'EnterpriseAccSpAlexKe'
         azureResourceGroup: 'alexke-rg'
         kubernetesCluster: 'alexkecluster'
-        namespace: 'alexke'
-        command: 'create'
+        useClusterAdmin: true
+        command: 'apply'
         useConfigurationFile: true
-        configurationType: 'inline'
-        inline: 'namespace alexke'
+        configuration: 'deploy/namespaceyml'
         secretType: 'dockerRegistry'
         containerRegistryType: 'Azure Container Registry'
     - task: Kubernetes@1
