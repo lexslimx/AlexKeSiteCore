@@ -58,4 +58,17 @@ stages:
         configuration: 'deploy/alexke-deployment.yml'
         secretType: 'dockerRegistry'
         containerRegistryType: 'Azure Container Registry'
+    - task: Kubernetes@1
+      inputs:
+        connectionType: 'Azure Resource Manager'
+        azureSubscriptionEndpoint: 'EnterpriseAccSpAlexKe'
+        azureResourceGroup: 'alexke-rg'
+        kubernetesCluster: 'alexkecluster'
+        useClusterAdmin: true
+        namespace: 'alexke'
+        command: 'apply'
+        useConfigurationFile: true
+        configuration: 'deploy/alexke-service.yml'
+        secretType: 'dockerRegistry'
+        containerRegistryType: 'Azure Container Registry'
       

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alexke-deployment
+  labels:
+    app: alexke
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: alexke
+  template:
+    metadata:
+      labels:
+        app: alexke
+    spec:
+      containers:
+      - name: alexke
+        image: lexslimx/alexkesite:1637
+        ports:
+        - containerPort: 80
