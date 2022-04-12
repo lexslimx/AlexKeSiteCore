@@ -12,14 +12,15 @@ variables:
   tag: '$(Build.BuildId)'
   repository: 'lexslimx/alexkesite'
 
+pool:
+      vmImage: ubuntu-latest
+
 stages:
 - stage: Build
   displayName: Build image
   jobs:
   - job: Build
     displayName: Build
-    pool:
-      vmImage: ubuntu-latest
     steps:
     - task: Docker@2
       displayName: Build an image
@@ -37,4 +38,24 @@ stages:
         command: push
         tags: |
           $(tag)
-    
+          
+- stage: Deploy
+  displayName: Deploy To K8s
+  jobs:
+  - job: Deploy
+    displayName: Deploy
+    steps:
+    - task: Kubernetes@1
+      inputs:
+        connectionType: 'Azure Resource Manager'
+        azureSubscriptionEndpoint: 'EnterpriseAccSpAlexKe'
+        azureResourceGroup: 'alexke-rg'
+        kubernetesCluster: 'alexkecluster'
+        useClusterAdmin: true
+        namespace: 'alexke'
+        command: 'apply'
+        useConfigurationFile: true
+        configuration: 'deploy/alexke-deployment.yml'
+        secretType: 'dockerRegistry'
+        containerRegistryType: 'Azure Container Registry'
+      
