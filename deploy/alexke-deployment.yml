@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: alexke
-        image: lexslimx/alexkesite:1637
+        image: lexslimx/alexkesite:$(Build.BuildId)
         ports:
         - containerPort: 80
