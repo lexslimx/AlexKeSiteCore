@@ -84,5 +84,24 @@ stages:
         configuration: 'deploy/alexke-service.yml'
         secretType: 'dockerRegistry'
         containerRegistryType: 'Azure Container Registry'
+- stage: Deploy
+  displayName: Deploy Ingress
+  jobs:
+  - job: Deploy
+    displayName: Deploy
+    steps:
+    
+    - task: Kubernetes@1
+      inputs:
+        connectionType: 'Azure Resource Manager'
+        azureSubscriptionEndpoint: 'EnterpriseAccSpAlexKe'
+        azureResourceGroup: 'alexke-rg'
+        kubernetesCluster: 'alexkecluster'
+        useClusterAdmin: true
+        command: 'apply'
+        useConfigurationFile: true
+        configuration: 'deploy/nginx-ingress.yml'
+        secretType: 'dockerRegistry'
+        containerRegistryType: 'Azure Container Registry'
 
       
