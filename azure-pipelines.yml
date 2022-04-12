@@ -31,7 +31,7 @@ stages:
       displayName: Push image
       inputs:
         containerRegistry: 'dockerHub'
-        repository: 'lexslimx/alexkesite'
+        repository: 'alexkesite'
         command: push
         tags: |
           $(tag)
