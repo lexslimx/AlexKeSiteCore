@@ -6,7 +6,7 @@ spec:
   selector:
     app: alexke
   ports:
-    type: LoadBalancer
+  type: LoadBalancer
     - protocol: TCP
       port: 80
       targetPort: 9376
