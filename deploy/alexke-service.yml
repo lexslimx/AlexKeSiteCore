@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: alexke-service
 spec:
-  type: LoadBalancer
   selector:
     app: alexke
   ports:
-    - protocol: TCP
+    - name: http
+      protocol: TCP
       port: 80
-      targetPort: 9376
+  type: ClusterIP

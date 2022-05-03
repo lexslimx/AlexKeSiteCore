@@ -15,8 +15,8 @@ resource alexkecluster 'Microsoft.ContainerService/managedClusters@2022-01-01' =
       {
         name: 'agentpool'
         osDiskSizeGB: 30
-        count: 2
-        vmSize: 'Standard_D2s_v3'
+        count: 1
+        vmSize: 'Basic_A1'
         osType: 'Linux'
         mode: 'System'
       }

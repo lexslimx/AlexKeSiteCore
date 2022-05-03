@@ -55,7 +55,7 @@ stages:
         useClusterAdmin: true
         command: 'apply'
         useConfigurationFile: true
-        configuration: 'deploy/namespace.yml'
+        configuration: 'deploy/alexke-namespace.yml'
         secretType: 'dockerRegistry'
         containerRegistryType: 'Azure Container Registry'
     - task: Kubernetes@1

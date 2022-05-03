@@ -11,11 +11,24 @@ resource newRG 'Microsoft.Resources/resourceGroups@2021-01-01' = {
 module alexkecluster 'kubernetes.bicep' = {
   name: 'alexkecluster'
   scope: newRG
+  dependsOn:[
+    alexkepublicip
+  ]
   params: {
     location: resourceGroupLocation
     clustername:'alexkecluster'
   }
 }
+
+module alexkepublicip 'publicip.bicep' = {
+  name: 'alexkepublicip'
+  scope: newRG
+  params: {
+    location: resourceGroupLocation
+  }
+}
+
+
 
 
 
