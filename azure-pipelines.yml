@@ -39,7 +39,7 @@ stages:
         tags: |
           $(tag)
           
-- stage: Deploy
+- stage: DeployK8
   displayName: Deploy To K8s
   jobs:
   - job: Deploy
@@ -84,7 +84,7 @@ stages:
         configuration: 'deploy/alexke-service.yml'
         secretType: 'dockerRegistry'
         containerRegistryType: 'Azure Container Registry'
-- stage: Deploy
+- stage: DeployIngress
   displayName: Deploy Ingress
   jobs:
   - job: Deploy
