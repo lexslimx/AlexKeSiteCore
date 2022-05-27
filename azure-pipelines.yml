@@ -12,8 +12,8 @@ variables:
   tag: '$(Build.BuildId)'
   repository: 'lexslimx/alexkesite'
 
-pool:
-      vmImage: ubuntu-latest
+# Agent VM image name
+pool: TestAgents
 
 stages:
 - stage: Build
