@@ -31,14 +31,14 @@ jobs:
       - name: Provision Static Web App
         run: |
           site_id="$(az resource list \
-            --resource-group alexke-rg \
+            --resource-group alex-site-rg \
             --resource-type Microsoft.Web/staticSites \
             --query "[?name=='alexkesite'].id | [0]" \
             --output tsv \
             --only-show-errors)"
           if [[ -z "$site_id" || "$site_id" == "None" ]]; then
             az deployment group create \
-              --resource-group alexke-rg \
+              --resource-group alex-site-rg \
               --template-file deploy/static-web-app/template.json \
               --parameters @deploy/static-web-app/parameters.json \
               --only-show-errors \
@@ -48,7 +48,7 @@ jobs:
         run: |
           token="$(az staticwebapp secrets list \
             --name alexkesite \
-            --resource-group alexke-rg \
+            --resource-group alex-site-rg \
             --query properties.apiKey \
             --output tsv)"
           if [[ -z "$token" || "$token" == "None" ]]; then

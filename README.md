@@ -8,7 +8,7 @@ To deploy with the existing container pipeline, build the `Dockerfile` and
 serve it on port 80. No .NET SDK or runtime is needed.
 
 The GitHub Actions workflow creates the Azure Static Web App `alexkesite` in
-the existing `alexke-rg` resource group using `deploy/static-web-app/template.json`
+the existing `alex-site-rg` resource group using `deploy/static-web-app/template.json`
 and `parameters.json` if it does not already exist, before uploading the site.
 Existing site configuration is left unchanged. The template creates the site
 without generating another GitHub workflow; the action retrieves its deployment
