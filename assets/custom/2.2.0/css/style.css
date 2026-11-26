@@ -4,9 +4,6 @@
 /*------------------------------------------------------------------
 [Color Scheme / Colors, textures]
 */
-.e-bg-light-texture {
-  background: url("../images/backgrounds/dark_fish_skin.png"); }
-
 /* Color Classes */
 .color01 {
   color: #ffffff !important; }
@@ -593,7 +590,6 @@ body {
     margin: 0 0 16px 0; }
 
 #initial {
-  background-image: url("../images/initial/bg-01.jpg");
   background-attachment: fixed;
   background-position: center center;
   background-size: cover; }
@@ -2775,7 +2771,6 @@ blockquote {
     width: 35px;
     height: 22px;
     content: '';
-    background-image: url("../images/quote.svg");
     background-repeat: no-repeat;
     background-size: 35px 22px; }
 
@@ -3279,5 +3274,3 @@ footer.light {
     line-height: 1.5em; }
   #page-title h2 {
     font-size: 32px; } }
-
-/*# sourceMappingURL=style.css.map */

@@ -2,9 +2,6 @@
 /*------------------------------------------------------------------
 [Color Scheme / Colors, textures]
 */
-.e-bg-light-texture {
-  background: url("../images/backgrounds/dark_fish_skin.png"); }
-
 /*Background Color Classes */
 .color01 {
   color: #ffffff !important; }
@@ -441,5 +438,3 @@
     color: #e74c3c; }
   #michael #price.dark .proposal .price-conclusion {
     color: #e74c3c; }
-
-/*# sourceMappingURL=default.css.map */

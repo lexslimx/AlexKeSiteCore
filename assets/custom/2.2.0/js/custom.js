@@ -11,13 +11,6 @@
             }
             return scrollReveal == null ? true : (scrollReveal == '1');
         };
-        window.ajaxLoadingEnabled = function () {
-            var ajaxLoading = sessionStorage.getItem('ajax-loading');
-            if (ajaxLoading == null) {
-                sessionStorage.setItem('ajax-loading', '1');
-            }
-            return ajaxLoading == null ? true : (ajaxLoading == '1');
-        };
     })();
 
     /** Window load handler **/
@@ -81,39 +74,6 @@
 
     /** Document ready handler **/
     $(document).ready(function () {
-        // Load scripts for each section (portfolio, counter ...)
-        sectionsScripts();
-
-        /** Ajax page load settings **/
-        (function () {
-
-            if (ajaxLoadingEnabled()) {
-                $(document).pjax('a', '.content-wrap', {fragment: '.content-wrap', scrollTo: false});
-
-                $(document).on('pjax:click', function (event) {
-                    if (!ajaxLoadingEnabled()) {
-                        event.preventDefault();
-                        window.location.reload();
-                    }
-                });
-
-                $(document).on('pjax:end', function () {
-                    document.activeElement && document.activeElement.blur();
-                    sectionsScripts();
-                    // Sections Animation
-                    if (scrollRevealEnabled()) {
-                        scrollReveal(scrollRevealItems.content);
-                    }
-                });
-
-                $(document).on('pjax:beforeReplace', function () {
-                    $('.content-wrap')
-                        .velocity({ opacity: 0 }, { duration: 0 })
-                        .velocity({ opacity: 1 }, { duration: 300, easing: [ 0, 1, 1, 0 ] });
-                });
-            }
-
-        })();
     });
 
     /** Set of sections scripts **/
