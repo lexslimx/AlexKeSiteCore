@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: alexke
-        image: lexslimx/alexkesite:1647
+        image: lexslimx/alexkesite:latest
         ports:
         - containerPort: 80

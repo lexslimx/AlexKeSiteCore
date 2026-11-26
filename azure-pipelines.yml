@@ -30,6 +30,7 @@ stages:
         dockerfile: 'Dockerfile'
         tags: |
           $(tag)
+          latest
     - task: Docker@2
       displayName: Push image
       inputs:
@@ -38,6 +39,7 @@ stages:
         command: push
         tags: |
           $(tag)
+          latest
           
 - stage: DeployK8
   displayName: Deploy To K8s
@@ -71,6 +73,17 @@ stages:
         configuration: 'deploy/alexke-deployment.yml'
         secretType: 'dockerRegistry'
         containerRegistryType: 'Azure Container Registry'
+    - task: Kubernetes@1
+      displayName: Deploy built image
+      inputs:
+        connectionType: 'Azure Resource Manager'
+        azureSubscriptionEndpoint: 'EnterpriseAccSpAlexKe'
+        azureResourceGroup: 'alexke-rg'
+        kubernetesCluster: 'alexkecluster'
+        useClusterAdmin: true
+        namespace: 'alexke'
+        command: 'set'
+        arguments: 'image deployment/alexke alexke=$(repository):$(tag)'
     - task: Kubernetes@1
       inputs:
         connectionType: 'Azure Resource Manager'
@@ -117,5 +130,17 @@ stages:
         configuration: 'deploy/nginx-ingress.yml'
         secretType: 'dockerRegistry'
         containerRegistryType: 'Azure Container Registry'
+    - task: Kubernetes@1
+      displayName: Deploy site ingress
+      inputs:
+        connectionType: 'Azure Resource Manager'
+        azureSubscriptionEndpoint: 'EnterpriseAccSpAlexKe'
+        azureResourceGroup: 'alexke-rg'
+        kubernetesCluster: 'alexkecluster'
+        useClusterAdmin: true
+        namespace: 'alexke'
+        command: 'apply'
+        useConfigurationFile: true
+        configuration: 'deploy/alexke-ingress.yml'
 
       
